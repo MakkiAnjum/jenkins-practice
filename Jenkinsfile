@@ -1,3 +1,4 @@
+def gv
 
 pipeline {
   agent any
@@ -8,9 +9,19 @@ pipeline {
   }
 
   stages {
+    stage('init') {
+      steps {
+        script {
+          gv = load "script.groovy"
+        }
+      }
+    }
+
     stage("build") {
      steps {
-        echo 'Building step..'
+        script {
+          gv.buildApp()
+        }
       }
   }
 
@@ -22,19 +33,15 @@ pipeline {
         }
       }
       steps {
-        echo 'Testing the application ...'
+       gv.testApp()
       }
 
     }
 
   stage("deploy") {
         steps {
-            echo "In deployment"
-            echo "Deploying version ${VERSION}"
+          gv.deployApp()
         }
      }
   }
-
-
-
 }
