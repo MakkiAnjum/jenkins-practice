@@ -3,7 +3,8 @@ pipeline {
 
   agent any
 
-  stage('build') {
+  stages {
+    stage('build') {
     sh 'npm install'
     sh 'npm start'
   }
@@ -14,6 +15,7 @@ pipeline {
 
   stage('deploy') {
     echo 'In deployment'
+  }
   }
 
 }
