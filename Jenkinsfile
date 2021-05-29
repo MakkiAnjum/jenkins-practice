@@ -5,16 +5,27 @@ pipeline {
 
   stages {
     stage("build") {
-    sh "npm install"
-    sh "npm start"
+      steps {
+         sh "npm install"
+         sh "npm start"
+      }
   }
 
   stage("test") {
-    sh "npm run test"
-  }
+    
+      steps {
+        sh "npm run test"
+  
+      }
+
+    }
 
   stage("deploy") {
-    echo "In deployment"
+  
+    steps {
+        echo "In deployment"
+    }
+
   }
   }
 
